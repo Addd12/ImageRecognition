@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognition</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+
+<body>
+    <h1>Image recognition</h1>
+    <br>
+    <form method="POST" enctype="multipart/form-data" action="recognize">
+        {%csrf_token%}
+        <div>
+            <label> Upload image: </label>
+            <input name="filePath" type="file">
+        </div>
+        <br>
+
+        <input type="submit" value="Upload">
+    </form>
+    {% if filePathName %}
+    <h3> The image contains <u><em>{{predictedLabel}}</em></u></h3>
+    <img src="{{filePathName}}" alt='some_image' style="max-height:300px">
+    {% endif %}
+</body>
+
+</html>
